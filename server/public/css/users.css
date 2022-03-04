@@ -1,0 +1,31 @@
+p {
+    width: 100%;
+}
+
+.col-sm-3 {
+    width: auto !important;
+    padding-top: 15px !important;
+}
+
+img {
+    width: 100% !important;
+}
+
+.buttonDiv {
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+.buttonDiv button {
+    border: 1px solid gray;
+    float: right;
+    margin-right: 10px;
+}
+nav {
+    display: flex !important;
+    align-items: center;
+    justify-content: end;
+}
+
+
+

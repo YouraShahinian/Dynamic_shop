@@ -1,0 +1,50 @@
+
+.bodyDiv {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.bodyDiv form {
+    width: 60%;
+}
+
+.bodyDiv form div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.bodyDiv form input {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 2px solid gray;
+    margin-bottom: 15px;
+}
+.buttonPosition {
+    margin-top: 10px;
+    max-width: 500px!important;
+    margin: 0 auto;
+}
+
+button {
+    width: 50%!important;
+    flex: none !important;
+}
+
+header {
+    margin-top: 16px;
+    margin-bottom: 48px;
+}
+
+header a {
+    color: #888888 !important;
+    margin-right: 8px;
+    margin-left: 8px;
+    text-decoration: none;
+}
