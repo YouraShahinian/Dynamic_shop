@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="./css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Create User</title>
+</head>
+
+<body>
+    <div class="d-flex align-items-center justify-content-center">
+        {{>adminTools}}
+    </div>
+
+    <div>
+        <div class="bodyDiv">
+            <form action="/create_user" method="post">
+                <input placeholder="User's full name" class="col-md-12" name="name" type="text" required>
+                <input placeholder="User's email" class="col-md-12" type="email" name="email" required>
+                <input placeholder="User's password" class="col-md-12" name="password" type="password" required>
+                <input placeholder="User's role" class="col-md-12" name="role" type="text" required>
+                <input type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

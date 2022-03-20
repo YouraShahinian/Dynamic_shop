@@ -14,7 +14,11 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     productImage: {
-        required: true
+        type: mongoose.Schema.Types.Buffer,
+    },
+    inCart: {
+        type: Number,
+        default: 0
     }
 })
 

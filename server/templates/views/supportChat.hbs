@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="/css/styles.min.css">
+</head>
+
+<body>
+    <div>
+    <a href="/user/me">My account</a>
+    </div>
+    <div class="chat">
+        <div class="chat__sidebar" id="sidebar"></div>
+        <div class="chat__main">
+            <div id="messages" class="chat__messages"></div>
+            <div class="compose">
+                <form action="/support-chat" method="post" id="message">
+                    <input name="message" placeholder="Message" required autocomplete="off">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{#if isAdmin}}
+    <script type="text/x-handlebars-template" id="message-template">
+        <div class="message">
+            <p>
+                <span class="message__name">{{bracesStart}}username{{bracesEnd}}</span>
+                <span class="message__meta">{{bracesStart}}createdAt{{bracesEnd}}</span>
+            </p>
+            <p>{{bracesStart}}message{{bracesEnd}}</p>    
+        </div>
+    </script>
+
+
+    <script type="text/x-handlebars-template" id="sidebar-template">
+        <h3 class="list-title">Chats</h3>
+        <ul class="users">
+            {{bracesStart}}{{startLoop}}chatData{{bracesEnd}}
+            <li onclick='getMessages("{{bracesStart}}_id{{bracesEnd}}", "{{bracesStart}}username{{bracesEnd}}")'>{{bracesStart}}username{{bracesEnd}}</li>
+            {{bracesStart}}{{endLoop}}chatData{{bracesEnd}}
+        </ul>
+    </script>
+    {{else}}
+
+    <script type="text/x-handlebars-template" id="message-template">
+        <div class="message">
+            <p>
+                <span class="message__name">{{bracesStart}}username{{bracesEnd}}</span>
+                <span class="message__meta">{{bracesStart}}createdAt{{bracesEnd}}</span>
+            </p>
+            <p>{{bracesStart}}message{{bracesEnd}}</p>    
+        </div>
+    </script>
+
+        <script type="text/x-handlebars-template" id="sidebar-template">
+        <h3 class="list-title">Chats</h3>
+        <ul class="users">
+            {{bracesStart}}{{startLoop}}chatData{{bracesEnd}}
+            <li onclick='getMessages("{{bracesStart}}_id{{bracesEnd}}", "{{bracesStart}}username{{bracesEnd}}")'>{{bracesStart}}username{{bracesEnd}}</li>
+            {{bracesStart}}{{endLoop}}chatData{{bracesEnd}}
+        </ul>    
+        </script>
+    {{/if}}
+
+    <script>
+        var chatData = JSON.parse(`{{{chats}}}`)
+        console.log(chatData)
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+
+</html>

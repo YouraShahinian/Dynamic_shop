@@ -12,14 +12,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bad-words": "^3.0.4",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
+    "consolidate": "^0.16.0",
+    "cookie-parser": "^1.4.6",
     "express": "^4.17.3",
+    "filesystem": "^1.0.1",
+    "handlebars": "^4.7.7",
     "hbs": "^4.2.0",
+    "http": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
-    "mongoose": "^6.2.4",
+    "mongoose": "^6.2.7",
     "path": "^0.12.7",
+    "socket.io": "^4.4.1",
     "url": "^0.11.0",
     "validator": "^13.7.0"
   }

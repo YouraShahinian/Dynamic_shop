@@ -1,10 +1,13 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/user.js'
 
-const auth = async (req, res, next) => {
+const userAuth = async (req, res, next) => {
     try {
-        const token = req.header('Authorization').replace('Bearer ', '')
-        const decoded = jwt.verify(token, 'thisismynewcourse')
+        const token = req.cookies['access_token'] //req.header('Authorization')
+        if (!token) {
+            return res.redirect('/signin')
+        }
+        const decoded = jwt.verify(token, 'dynamicshop')
         const user = await User.findOne({_id: decoded._id, 'tokens.token': token})
 
         if (!user) {
@@ -22,4 +25,4 @@ const auth = async (req, res, next) => {
 
 }
 
-export default auth
+export default userAuth

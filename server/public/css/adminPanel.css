@@ -1,0 +1,27 @@
+th {
+    border: 2px solid grey;
+}
+
+form {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+}
+
+header {
+    margin-top: 16px;
+    margin-bottom: 48px;
+}
+
+header a {
+    color: #888888 !important;
+    margin-right: 8px;
+    margin-left: 8px;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none !important;
+    color: grey !important;
+}

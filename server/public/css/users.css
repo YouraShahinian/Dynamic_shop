@@ -20,11 +20,25 @@ img {
     border: 1px solid gray;
     float: right;
     margin-right: 10px;
+    color: gray;
 }
 nav {
     display: flex !important;
     align-items: center;
     justify-content: end;
+}
+
+.buttonDiv a {
+    text-decoration: none !important;
+    margin-right: 10px;
+    color: gray;
+    cursor: pointer;
+}
+
+.buttonDiv a:hover {
+    text-decoration: none !important;
+    color: gray;
+
 }
 
 

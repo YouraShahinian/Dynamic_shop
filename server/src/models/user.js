@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import validator from 'validator'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import Chat from './chat.js'
 
 const userSchema = new mongoose.Schema({
         name: {
@@ -34,15 +35,18 @@ const userSchema = new mongoose.Schema({
         },
         role: {
             type: String,
+            trim: true,
             default: 'user',
-            required: true
         },
         tokens: [{
             token: {
                 type: String,
                 required: true
             }
-        }]
+        }],
+        chatId: {
+            type: String
+        }
     })
 
 userSchema.methods.toJSON = function () {
@@ -57,7 +61,7 @@ userSchema.methods.toJSON = function () {
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewcourse')
+    const token = jwt.sign({ _id: user._id.toString() }, 'dynamicshop')
 
     user.tokens = user.tokens.concat({ token })
     await user.save()
@@ -91,6 +95,26 @@ userSchema.pre('save', async function(next) {
 
     next()
 })
+
+userSchema.methods.isAdmin = function () {
+    return this.role === "admin"
+}
+
+userSchema.methods.getChatId = async function () {
+    if (this.isAdmin()) {
+        return "admin"
+    } else {
+        if (this.chatId) {
+            return this.chatId
+        } else {
+            const chat = new Chat({id: this._id.toString(), username: this.name})
+            this.chatId = chat._id.toString()
+            await Promise.all([chat.save(), this.save()])
+            return this.chatId
+        }
+    }
+    
+}
 
 
 const User = mongoose.model('User', userSchema)
