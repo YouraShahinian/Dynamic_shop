@@ -1,23 +1,26 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const chatSchema = new mongoose.Schema({
+const chatSchema = new mongoose.Schema(
+  {
     id: {
-        type: String
+      type: String,
     },
     username: {
-        type: String
+      type: String,
     },
     lastMessage: {
-        message: {
-            type: String,
-        },
-        isAdmin: {
-            type: Boolean,
-            default: false
-        }
-    }
-})
+      message: {
+        type: String,
+      },
+      isAdmin: {
+        type: Boolean,
+        default: false,
+      },
+    },
+  },
+  { timestamps: true }
+);
 
-const Chat = mongoose.model("Chat", chatSchema)
+const Chat = mongoose.model("Chat", chatSchema);
 
 export default Chat;

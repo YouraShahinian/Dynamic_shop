@@ -1,35 +1,43 @@
-import mongoose from 'mongoose'
-import Chat from './chat.js'
+import mongoose from "mongoose";
+import Chat from "./chat.js";
 
-const messagesSchema = new mongoose.Schema ({
+const messagesSchema = new mongoose.Schema(
+  {
     chatId: {
-        type: String
+      type: String,
     },
     message: {
-        type: String
+      type: String,
     },
     isAdmin: {
-        type: Boolean,
-        default: false
-    }
-})
+      type: Boolean,
+      default: false,
+    },
+    createdAt: {
+      type: Date,
+    },
+  },
+  { timestamps: true }
+);
 
-messagesSchema.pre('save', async function(next) {
-    const message = this
-    try {
-        const chat = await Chat.findById(this.chatId).orFail(new Error("No chat found."))
-        chat.lastMessage = {
-            message: message.message,
-            isAdmin: message.isAdmin
-        }
-        await chat.save()
-        next()
-    } catch (e) {
-        console.log(e)
-        return
-    }
-})
+messagesSchema.pre("save", async function (next) {
+  const message = this;
+  try {
+    const chat = await Chat.findById(this.chatId).orFail(
+      new Error("No chat found.")
+    );
+    chat.lastMessage = {
+      message: message.message,
+      isAdmin: message.isAdmin,
+    };
+    await chat.save();
+    next();
+  } catch (e) {
+    console.log(e);
+    return;
+  }
+});
 
-const Message = mongoose.model('Message', messagesSchema)
+const Message = mongoose.model("Message", messagesSchema);
 
-export default Message
+export default Message;

@@ -1,10 +1,6 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 import Message from "../models/messages.js";
-import Chat from "../models/chat.js";
 import User from "../models/user.js";
-
-import { generateMessage } from "../utils/messages.js";
-// import { addUser, removeUser, getUser, getUsersInRoom } from "../utils/users.js"
 
 // Socket.io
 const importIo = (io) => {
@@ -35,19 +31,16 @@ const importIo = (io) => {
 
     socket.on("sendMessage", async (message, callback) => {
       let savedMessage;
-      console.log(message)
       try {
         if (!user.isAdmin()) {
-          message.chatId = await user.getChatId()
+          message.chatId = await user.getChatId();
         }
         savedMessage = new Message({
           message: message.text,
           chatId: message.chatId ? message.chatId : user.chatId,
-          isAdmin: user.isAdmin()
+          isAdmin: user.isAdmin(),
         });
-        console.log(savedMessage);
         await savedMessage.save();
-        console.log(savedMessage);
       } catch (e) {
         console.log(e);
         return;
@@ -56,24 +49,23 @@ const importIo = (io) => {
       if (!user.isAdmin()) {
         username = user.name;
       } else {
-        username = "admin"
+        username = "admin";
       }
-console.log(message.chatId)
       io.to("admin").emit("message", {
         username,
         chatId: message.chatId,
         text: message.text,
         createdAt: savedMessage.createdAt,
-        isAdmin: user.isAdmin()
+        isAdmin: user.isAdmin(),
       });
       io.to(message.chatId).emit("message", {
         username,
         chatId: message.chatId,
         text: message.text,
         createdAt: savedMessage.createdAt,
-        isAdmin: user.isAdmin()
+        isAdmin: user.isAdmin(),
       });
-      callback()
+      callback();
     });
 
     socket.on("disconnect", () => {

@@ -15,21 +15,20 @@
     <div class="d-flex align-items-center justify-content-center">
         {{>header}}
     </div>
-           <div class="productsTitleDecor">
-            <p>PRODUCTS</p>
-        </div>
-        <div class="d-flex align-items-center justify-content-center filter">
-            <input type="button" id="minToMax"  value="min - max">
-            <input type="button" id="maxToMin" value="max - min">
-        </div>
-        <div class="productsList row" id="productsList">
-        </div>
-        <script>
-            var dataArray = JSON.parse(`{{{products}}}`);
-            console.log(dataArray)
-        </script>
-        <script src="/js/products.js"></script>
-        <script src="/js/cart.js"></script>
+    <div class="productsTitleDecor">
+        <p>PRODUCTS</p>
+    </div>
+    <div class="d-flex align-items-center justify-content-center filter">
+        <input type="button" id="minToMax" value="min - max">
+        <input type="button" id="maxToMin" value="max - min">
+    </div>
+    <div class="productsList row" id="productsList">
+    </div>
+    <script>
+        var dataArray = JSON.parse(`{{{products}}}`);
+    </script>
+    <script src="/js/products.js"></script>
+    <script src="/js/cart.js"></script>
 </body>
 
 </html>

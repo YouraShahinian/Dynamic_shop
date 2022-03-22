@@ -22,15 +22,15 @@
         <button type="submit">Delete account</button>
       </form>
       {{else}}
-            <a href="/">Home</a>
-            <a href="/support-chat">Support</a>
+      <a href="/">Home</a>
+      <a href="/support-chat">Support</a>
       <form action="/logout" method="post">
         <button>log out</button>
       </form>
       <form action="/delete?_method=delete" method="post">
         <button type="submit">Delete account</button>
       </form>
-            {{/if}}
+      {{/if}}
   </nav>
   <div class="row">
     <div class="col-sm-3 d-flex">
